@@ -1,0 +1,15 @@
+[Unit]
+Description=Agora coordination MCP server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Point at the venv where you `pip install agora-mesh`, and your config.
+Environment=AGORA_CONFIG=%h/.config/agora/config.toml
+ExecStart=%h/.local/agora-venv/bin/agora serve
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Agora maintenance tick (sync -> respond -> notify)
+
+[Service]
+Type=oneshot
+Environment=AGORA_CONFIG=%h/.config/agora/config.toml
+# Secrets belong in the environment, not config.toml. Uncomment & fill, or use
+# an EnvironmentFile pointing at a mode-0600 secrets file:
+# EnvironmentFile=%h/.config/agora/agora.env
+ExecStart=%h/.local/agora-venv/bin/agora tick

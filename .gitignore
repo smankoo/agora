@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Agora runtime data / local config (never commit)
+*.db
+*.db-wal
+*.db-shm
+config.toml
+peers.json
+*.env
+.env
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

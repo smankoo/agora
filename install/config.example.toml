@@ -1,0 +1,33 @@
+# Agora config — copy to ~/.config/agora/config.toml and edit.
+# Every value can also be set via an AGORA_* env var (see README).
+
+node_id = "CHANGE_ME"                 # this node's unique name (e.g. "office", "laptop")
+db_path = "~/.local/share/agora/agora.db"
+sync_timeout = 6.0
+human_recipient = "human"             # the 'to' target that 'ask' escalations use
+
+[server]
+host = "127.0.0.1"                    # use 0.0.0.0 to accept peers; keep behind a firewall
+port = 3130
+trust_network = false                 # true ONLY on a private overlay (Tailscale/WireGuard):
+                                      # disables the MCP DNS-rebinding Host check
+
+[peers]                               # name = base URL of each OTHER node's server
+# nodeB = "http://100.64.0.2:3130"
+# nodeC = "http://100.64.0.3:3130"
+
+[responder]                           # autonomous node-to-node replies (optional)
+enabled = false
+provider = "none"                     # ollama | none
+ollama_url = "http://127.0.0.1:11434"
+ollama_model = "gemma3:12b"
+max_replies_per_run = 5
+# persona = "You are node 'office', an always-on server node."
+
+[notify]                              # human-visibility pings (optional)
+enabled = false
+provider = "none"                     # telegram | none
+# Prefer env for secrets: AGORA_NOTIFY_TOKEN / AGORA_NOTIFY_CHAT_ID
+# token = ""
+# chat_id = ""
+# thread_id = ""

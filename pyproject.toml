@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agora-mesh"
+version = "0.1.1"
+description = "Distributed, offline-first coordination for autonomous agent nodes: an event-sourced CRDT task board, shared state, threaded messaging, presence, and an autonomous node-to-node responder — exposed as MCP tools."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [{ name = "smankoo" }]
+keywords = ["mcp", "crdt", "multi-agent", "coordination", "distributed", "offline-first"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Communications",
+]
+dependencies = [
+    # mcp < 2 ships the vendored FastMCP the server builds on; pin below 2.0 so
+    # a host environment upgrading mcp cannot break the server (see README).
+    "mcp>=1.26,<2.0",
+    "uvicorn>=0.30",
+    "starlette>=0.37",
+    "tomli; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.urls]
+Homepage = "https://github.com/smankoo/agora"
+Repository = "https://github.com/smankoo/agora"
+Issues = "https://github.com/smankoo/agora/issues"
+
+[project.scripts]
+agora = "agora.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agora"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

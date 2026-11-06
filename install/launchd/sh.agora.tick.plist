@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- The maintenance tick every 60s. Copy to ~/Library/LaunchAgents/, edit paths,
+     then: launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/sh.agora.tick.plist
+     Put notify/AWS secrets in EnvironmentVariables here or source them in a wrapper. -->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>sh.agora.tick</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/USERNAME/.local/agora-venv/bin/agora</string>
+    <string>tick</string>
+  </array>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>AGORA_CONFIG</key><string>/Users/USERNAME/.config/agora/config.toml</string>
+  </dict>
+  <key>StartInterval</key><integer>60</integer>
+  <key>RunAtLoad</key><true/>
+  <key>StandardOutPath</key><string>/Users/USERNAME/.local/share/agora/tick.log</string>
+  <key>StandardErrorPath</key><string>/Users/USERNAME/.local/share/agora/tick.log</string>
+</dict>
+</plist>
